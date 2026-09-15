@@ -39,4 +39,6 @@ public readonly record struct Vec4<T> where T : INumber<T> {
 	public static Vec4<T> operator -(Vec4<T> left, T right) => new(left.X - right, left.Y - right, left.Z - right, left.W - right);
 	public static Vec4<T> operator *(Vec4<T> left, T right) => new(left.X * right, left.Y * right, left.Z * right, left.W * right);
 	public static Vec4<T> operator /(Vec4<T> left, T right) => new(left.X / right, left.Y / right, left.Z / right, left.W / right);
+
+	public static Vec4<T> operator -(Vec4<T> self) => new(-self.X, -self.Y, -self.Z, -self.W);
 }

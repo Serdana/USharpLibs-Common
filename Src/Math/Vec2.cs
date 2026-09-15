@@ -29,4 +29,6 @@ public readonly record struct Vec2<T> where T : INumber<T> {
 	public static Vec2<T> operator -(Vec2<T> left, T right) => new(left.X - right, left.Y - right);
 	public static Vec2<T> operator *(Vec2<T> left, T right) => new(left.X * right, left.Y * right);
 	public static Vec2<T> operator /(Vec2<T> left, T right) => new(left.X / right, left.Y / right);
+
+	public static Vec2<T> operator -(Vec2<T> self) => new(-self.X, -self.Y);
 }
