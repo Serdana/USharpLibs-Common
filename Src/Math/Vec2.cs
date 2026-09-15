@@ -1,8 +1,10 @@
 using System.Numerics;
+using JetBrains.Annotations;
 
 namespace USharpLibs.Common.Math;
 
-public readonly record struct Vec2<T> : IComparable<Vec2<T>> where T : INumber<T> {
+[PublicAPI]
+public readonly record struct Vec2<T> where T : INumber<T> {
 	public T X { get; init; }
 	public T Y { get; init; }
 
@@ -11,9 +13,9 @@ public readonly record struct Vec2<T> : IComparable<Vec2<T>> where T : INumber<T
 		Y = y;
 	}
 
-	public int CompareTo(Vec2<T> other) {
-		int xComparison = X.CompareTo(other.X);
-		return xComparison != 0 ? xComparison : Y.CompareTo(other.Y);
+	public void Deconstruct(out T x, out T y) {
+		x = X;
+		y = Y;
 	}
 
 	public override string ToString() => $"{X}, {Y}";
@@ -27,9 +29,4 @@ public readonly record struct Vec2<T> : IComparable<Vec2<T>> where T : INumber<T
 	public static Vec2<T> operator -(Vec2<T> left, T right) => new(left.X - right, left.Y - right);
 	public static Vec2<T> operator *(Vec2<T> left, T right) => new(left.X * right, left.Y * right);
 	public static Vec2<T> operator /(Vec2<T> left, T right) => new(left.X / right, left.Y / right);
-
-	public static bool operator <(Vec2<T> left, Vec2<T> right) => left.CompareTo(right) < 0;
-	public static bool operator >(Vec2<T> left, Vec2<T> right) => left.CompareTo(right) > 0;
-	public static bool operator <=(Vec2<T> left, Vec2<T> right) => left.CompareTo(right) <= 0;
-	public static bool operator >=(Vec2<T> left, Vec2<T> right) => left.CompareTo(right) >= 0;
 }
